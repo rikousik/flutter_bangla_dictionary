@@ -1,5 +1,7 @@
-> I made this simple English to Bengali dictionary with flutter to test flutter's ability to process large files efficiently.Fot this I used a 14mb json file which I had to parse with flutter isolates that parsed this huge data concurrently in the background. So user have to wait little or no time at the biginning for app to load the data
 
+ [main post:](https://www.squadhead.com/blog/flutter-bangla-dictionary)
+
+> I made this simple English to Bengali dictionary with flutter to test flutter's ability to process large files efficiently.Fot this I used a 14mb json file which I had to parse with flutter isolates that parsed this huge data concurrently in the background. So user have to wait little or no time at the biginning for app to load the data
 
 
 Features and Plugins I've used: 
