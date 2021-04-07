@@ -1,16 +1,41 @@
-# flutter_bangla_dictionary
+> I made this simple English to Bengali dictionary with flutter to test flutter's ability to process large files efficiently.Fot this I used a 14mb json file which I had to parse with flutter isolates that parsed this huge data concurrently in the background. So user have to wait little or no time at the biginning for app to load the data
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Features and Plugins I've used: 
+ - Flutter_Bloc
+ - Json (as dictionary database)
+ - Domain driven design
+ - Freezed
+ - Darz
+ - Hive (to run query on dictionary)
+ - Autotrie (For Searching words)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+For concurrent process I had to call those fuctions out of the class: 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```dart
+Future<List<Word>> getWords() async {
+  final String minidb = await rootBundle.loadString('asset/db.json');
+  final List<Word> words = await compute(parseWord, minidb);
+  return words;
+}
+
+List<Word> parseWord(String jsonString) {
+  final List<dynamic> json = jsonDecode(jsonString) as List<dynamic>;
+
+  return List<Word>.from(
+      json.map((e) => Word.fromJson(e as Map<String, dynamic>)));
+}
+```
+
+![screenshot 1](screenshots/screen-1.png)
+![screenshot 2](screenshots/screen-1.png)
+![screenshot 3](screenshots/screen-1.png)
+ 
+
+### Note
+
+This is an eperimental project to justify flutters capability, hence I do not advise to use this project in real life as I do not own this database, I cannot guarantee its rich vocabulary.
+
+
